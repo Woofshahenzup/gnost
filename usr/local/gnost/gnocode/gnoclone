@@ -1,0 +1,84 @@
+#!/bin/sh
+# rcrsn51 2010-04-02
+# this script uses the additional programs partclone.ntfsfixboot and ms-sys 
+## Spanish translate nilsonmorales
+
+echo
+echo Este programa copia una partición NTFS desde un disco duro a otro.
+echo La partición destino debe estar ya formateada a NTFS.
+echo
+echo La partición fuente probablemente es: sda1
+echo La partición destino probablemente es: sdb1
+echo Ambas particiones deben estar DESmontadas.
+echo
+echo No olvide agregar un boot flag al disco duro nuevo!
+echo
+
+echo -n "Partición fuente: "
+read SOURCE
+echo -n "Partición destino: "
+read DEST
+echo -n "Está seguro? [y/n] "
+read REPLY
+if [ "$REPLY" != "y" ]; then
+  echo
+  exit
+fi
+
+echo
+echo Revisando  ...
+echo
+
+fdisk -l | grep $SOURCE | grep -q -e "NTFS"
+if [ $? -ne 0 ]; then
+  echo Partición $SOURCE no es NTFS!
+  echo
+  exit
+fi
+
+fdisk -l | grep $DEST | grep -q -e "NTFS"
+if [ $? -ne 0 ]; then
+  echo Partición $DEST no es NTFS!
+  echo
+  exit
+fi
+
+mount | grep -q -e $SOURCE
+if [ $? -eq 0 ]; then
+  echo Desmontar partición $SOURCE primero!
+  echo
+  exit
+fi
+
+mount | grep -q -e $DEST
+if [ $? -eq 0 ]; then
+  echo Desmontar partición $DEST primero!
+  echo
+  exit
+fi
+
+# copy the partition
+ntfsclone --overwrite /dev/$DEST /dev/$SOURCE
+if [ $? -ne 0 ]; then
+  echo
+  exit
+fi
+
+sync
+
+# expand the filesystem to fill the new partition
+echo "y" | ntfsresize /dev/$DEST
+
+# update the boot sector to match the new drive geometry
+./gnocode/partclone.ntfsfixboot -w /dev/$DEST
+
+# delete old volume ID and write a DOS/Win MBR
+DRV=${DEST:0:3}
+dd if=/dev/zero of=/dev/$DRV bs=446 count=1
+ms-sys --mbr --write /dev/$DRV
+
+# schedule a Windows CHKDSK on reboot
+ntfsfix /dev/$DEST
+
+sync
+echo
