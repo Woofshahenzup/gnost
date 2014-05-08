@@ -1,0 +1,70 @@
+#!/bin/sh
+# rcrsn51 2010-02-13
+# this script uses the additional program partclone.fat
+## nilsonmorales Spanish translate
+
+echo
+echo Este programa respaldará/restaurará una partición FAT.
+echo Correr este script desde dentro de la partición donde el archivo de imágen sera guardado.
+echo La particion FAT NO debe estar montada.
+echo Si desea sobre-escribir un archivo de imágen existente, deberá borrarlo primero.
+echo
+
+echo Hay dos operaciones: c-crear una imágen y r-restaurar una imágen
+echo Un ejemplo de nombre de partición sería: sda1
+echo Un ejemplo de archivo de imágen sería: lenovo-xp-sda1-ene.fgno
+
+echo
+echo -n "Operación: [c/r] "
+read OP
+echo -n "Partición FAT: "
+read PART
+echo -n "Nombre de archivo de imágen: "
+read FILE
+echo -n "Está seguro? [y/n] "
+read REPLY
+if [ "$REPLY" != "y" ]; then
+  echo
+  exit
+fi
+
+echo
+echo Revisando ...
+echo
+
+fdisk -l | grep $PART | grep -q -e "FAT"
+if [ $? -ne 0 ]; then
+  echo Partición $PART no es FAT!
+  echo
+  exit
+fi
+
+mount | grep -q -e $PART
+if [ $? = 0 ]; then
+  echo Desmontar partición $PART primero!
+  echo
+  exit
+fi
+
+if [ $OP = "c" ] && [ -f $FILE ]; then
+  echo Archivo de imágen $FILE ya existe - borrelo primero!
+  echo
+  exit
+fi
+
+if [ $OP = "r" ] && [ ! -f $FILE ]; then
+  echo Archivo de imágen $FILE no se encuentra!
+  echo
+  exit
+fi
+
+if [ "$OP" = "c" ]; then
+  ./gnocode/partclone.fat -c -s /dev/$PART | gzip -c > $FILE
+elif [ "$OP" = "r" ]; then
+  zcat $FILE | ./gnocode/partclone.fat -r -o /dev/$PART
+  sync
+  fsck.vfat /dev/$PART
+fi
+
+sync
+echo
