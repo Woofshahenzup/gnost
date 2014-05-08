@@ -1,0 +1,31 @@
+#!/bin/sh
+# rcrsn51 2012-04-19
+## Spanish translate by nilsonmorales
+
+echo
+echo Este programa guarda información de una partición en un archivo.
+echo El nombre de la partición es sda, sdb, etc.
+echo
+echo -n "Nombre de la unidad: "
+read DRV
+echo -n "Está seguro? [y/n] "
+read REPLY
+if [ "$REPLY" != "y" ]; then
+  echo
+  exit
+fi
+
+FN=$DRV-info.txt
+echo "PART TYPE SIZE(MB)" > $FN
+
+probepart | grep $DRV | while read X; do
+  PART=`echo $X | cut -d "|" -f 1`
+  PART=`echo $PART | cut -d "/" -f 3`
+  TYPE=`echo $X | cut -d "|" -f 2`
+  SIZE=`echo $X | cut -d "|" -f 3`
+  let SIZE=SIZE/2048
+  echo $PART  $TYPE  $SIZE >> $FN
+done
+echo
+echo "El archivo se llama" $FN
+echo

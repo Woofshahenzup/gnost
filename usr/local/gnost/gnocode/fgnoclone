@@ -1,0 +1,66 @@
+#!/bin/sh
+# rcrsn51 2010-04-02
+# this script uses the additional program partclone.fat
+## Spanish translate nilsonmorales
+
+echo
+echo Este programa copia una partición FAT a una partición diferente o disco.
+echo La partición destino ya debe estar formateada como FAT.
+echo
+echo Un ejemplo de partición fuente sería: sda2
+echo Un ejemplo de partición destino sería: sdb1
+echo Ambas particiones deben estar DESmontadas.
+echo
+
+echo -n "Partición fuente: "
+read SOURCE
+echo -n "Partición destino: "
+read DEST
+echo -n "Está seguro? [y/n] "
+read REPLY
+if [ "$REPLY" != "y" ]; then
+  echo
+  exit
+fi
+
+echo
+echo Revisando  ...
+echo
+
+fdisk -l | grep $SOURCE | grep -q -e "FAT"
+if [ $? -ne 0 ]; then
+  echo Partición $SOURCE no es FAT!
+  echo
+  exit
+fi
+
+fdisk -l | grep $DEST | grep -q -e "FAT"
+if [ $? -ne 0 ]; then
+  echo Partición $DEST no es FAT!
+  echo
+  exit
+fi
+
+mount | grep -q -e $SOURCE
+if [ $? -eq 0 ]; then
+  echo Desmontar partición $SOURCE primero!
+  echo
+  exit
+fi
+
+mount | grep -q -e $DEST
+if [ $? -eq 0 ]; then
+  echo Desmontar partición $DEST primero!
+  echo
+  exit
+fi
+
+# copy the partition
+./gnocode/partclone.fat -b -s /dev/$SOURCE -o /dev/$DEST
+if [ $? -ne 0 ]; then
+  echo
+  exit
+fi
+
+sync
+echo      
