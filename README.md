@@ -7,8 +7,11 @@ Herramienta para clonar particiones EXT, NTFS, FAT
 
 #### Indice
 **[Particiones NTFS](#particiones-ntfs)** 
+
 **[Particiones EXT](#particiones-ext)** 
+
 **[Particiones FAT](#particiones-fat)** 
+
 **[Paquetes](#paquetes)** 
 
 #### Particiones NTFS
