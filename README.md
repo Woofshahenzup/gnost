@@ -5,10 +5,16 @@ Herramienta para clonar particiones EXT, NTFS, FAT
 
 ### USO
 
+#### Indice
+**[Particiones NTFS](#particiones-ntfs)** 
+**[Particiones EXT](#particiones-ext)** 
+**[Particiones FAT](#particiones-fat)** 
+**[Paquetes](#paquetes)** 
+
 #### Particiones NTFS
 
 Necesitarás otra partición para guardar y respaldar tus archivos de imágen, preferentemente, deberían tener formato
-ext2 y el lugar más seguro es una unidad usb externa, sin embargo su " Unidad de Copia de Respaldo" podría ser otra partición 
+ext2 y el lugar más seguro es una unidad usb externa, sin embargo su "Unidad de Copia de Respaldo" podría ser otra partición 
 ext2 en el disco duro, tambien puede utilizar una partición NTFS como su unidad de copias de respaldo si su disco 
 duro ya estaba formateado de esa manera (Sin embargo, esta alternativa no ha recibido pruebas extensivas.)
 
@@ -43,7 +49,7 @@ manera.
 
 Si usted tiene la configuración adecuada de hardware, puede copiar toda la partición de Windows directamente 
 desde la unidad antigua a la nueva, sin hacer un archivo de imagen. Ejecuta Gnost 
-desde el directorio en Puppy  /usr/local/gnost y seleccione # 2. Tenga mucho cuidado especificar
+desde el directorio en Puppy  /usr/local/gnost y seleccione # 2. Tenga mucho cuidado de especificar
 la fuente correcta y partición de destino. Si lo hace al revés destruirá su Windows!
 
 Aunque Windows se suele instalar en la primera partición de una unidad, Gnost puede moverlo a 
