@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gnost on-line help
+Name[es]=Gnost ayuda en linea
+Icon=/usr/share/icons/clone.png
+Comment=Gnost on-line help
+Comment[es]=Gnost ayuda en linea
+Exec=defaultbrowser https://github.com/Woofshahenzup/gnost
+Terminal=false
+Type=Application
+Categories=Archiving
+GenericName=Gnost-on-line-help
