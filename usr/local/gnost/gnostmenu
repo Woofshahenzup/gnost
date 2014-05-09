@@ -20,37 +20,37 @@ Xdialog --rc-file /usr/local/gnost/.color.rc --title "$(gettext 'GNOSTMENU  0.1'
 r=`tail -n 1 /tmp/myscript.tmp`
 
 if [ "$r" == "1" ];then
-roxterm -e ./gnocode/gnost && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/gnost && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "2" ];then
-roxterm -e ./gnocode/gnoclone && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/gnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "3" ];then
-roxterm -e ./gnocode/egnost && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/egnost && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "4" ];then
-roxterm -e ./gnocode/egnoclone && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/egnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "5" ];then
-roxterm -e ./gnocode/fgnost && gnostmenu 
+roxterm -e /usr/local/gnost/gnocode/fgnost && gnostmenu 
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "6" ];then
-roxterm -e ./gnocode/fgnoclone && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/fgnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "7" ];then
-roxterm -e ./gnocode/driveinfo && gnostmenu
+roxterm -e /usr/local/gnost/gnocode/driveinfo && gnostmenu
    exit ## Exit Script ##
 fi
 
