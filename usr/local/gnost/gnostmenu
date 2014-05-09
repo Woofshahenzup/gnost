@@ -1,12 +1,13 @@
 #!/bin/sh
 # nilsonmorales
-
+#publish josejp2424
 
 export TEXTDOMAIN=gnostmenu
 export OUTPUT_CHARSET=UTF-8
 B_OK="GTK_STOCK_OK"
-
-Xdialog --title "$(gettext 'GNOSTMENU')" --screen-center --left --menubox "$(gettext 'Clone/restore NTFS, EXT, FAT partitions')" 320x220 10 \
+ICON="/usr/share/icons/hicolor/48x48/apps/clone48x48.png"
+ICONAPP="/usr/share/icons/hicolor/48x48/apps/clone48x48.png"
+Xdialog --rc-file /usr/local/gnost/.color.rc --title "$(gettext 'GNOSTMENU  0.1')" --screen-center --icon "$ICON" --icon-name="$ICONAPP" --left --menubox "$(gettext 'Clone/restore NTFS, EXT, FAT partitions')" 400x240 10 \
  '1' "$(gettext 'Backup/restore an NTFS partition')" \
  '2' "$(gettext 'Copy an NTFS partition')" \
  '3' "$(gettext 'Backup/restore an EXT partition')" \
@@ -19,37 +20,37 @@ Xdialog --title "$(gettext 'GNOSTMENU')" --screen-center --left --menubox "$(get
 r=`tail -n 1 /tmp/myscript.tmp`
 
 if [ "$r" == "1" ];then
-   roxterm -e ./gnocode/gnost
+roxterm -e ./gnocode/gnost && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "2" ];then
-   roxterm -e ./gnocode/gnoclone
+roxterm -e ./gnocode/gnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "3" ];then
-   roxterm -e ./gnocode/egnost
+roxterm -e ./gnocode/egnost && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "4" ];then
-   roxterm -e ./gnocode/egnoclone
+roxterm -e ./gnocode/egnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "5" ];then
-   roxterm -e ./gnocode/fgnost 
+roxterm -e ./gnocode/fgnost && gnostmenu 
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "6" ];then
-   roxterm -e ./gnocode/fgnoclone
+roxterm -e ./gnocode/fgnoclone && gnostmenu
    exit ## Exit Script ##
 fi
 
 if [ "$r" == "7" ];then
-   roxterm -e ./gnocode/driveinfo
+roxterm -e ./gnocode/driveinfo && gnostmenu
    exit ## Exit Script ##
 fi
 

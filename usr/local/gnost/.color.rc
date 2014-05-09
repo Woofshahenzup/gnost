@@ -1,0 +1,5 @@
+style 'green_background' {
+bg[NORMAL] = "#339D0D"
+fg[NORMAL] = "#000000"
+}
+widget '*' style 'green_background'
