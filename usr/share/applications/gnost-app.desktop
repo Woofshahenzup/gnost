@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gnost 
+Name[es]=Gnost 
+Icon=/usr/share/icons/clone.png
+Comment=Gnost
+Comment[es]=Gnost
+Exec=gnostmenu
+Terminal=false
+Type=Application
+Categories=Archiving
+GenericName=Gnost
