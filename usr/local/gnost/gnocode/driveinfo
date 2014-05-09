@@ -3,7 +3,7 @@
 ## Spanish translate by nilsonmorales
 
 echo
-echo Este programa guarda información de una partición en un archivo.
+echo $(gettext 'Este programa guarda información de una partición en un archivo.')
 echo El nombre de la partición es sda, sdb, etc.
 echo
 echo -n "Nombre de la unidad: "

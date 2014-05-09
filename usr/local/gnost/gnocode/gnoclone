@@ -11,7 +11,7 @@ echo La partición fuente probablemente es: sda1
 echo La partición destino probablemente es: sdb1
 echo Ambas particiones deben estar DESmontadas.
 echo
-echo No olvide agregar un indicador de arranque (boot flag) al disco duro nuevo!
+echo No olvide agregar un indicador de arranque '(boot flag)' al disco duro nuevo!
 echo
 
 echo -n "Partición fuente: "
