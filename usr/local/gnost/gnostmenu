@@ -7,7 +7,7 @@ export OUTPUT_CHARSET=UTF-8
 B_OK="GTK_STOCK_OK"
 ICON="/usr/share/icons/hicolor/48x48/apps/clone48x48.png"
 ICONAPP="/usr/share/icons/hicolor/48x48/apps/clone48x48.png"
-Xdialog --rc-file /usr/local/gnost/.color.rc --title "$(gettext 'GNOSTMENU  0.1')" --screen-center --icon "$ICON" --icon-name="$ICONAPP" --left --menubox "$(gettext 'Clone/restore NTFS, EXT, FAT partitions')" 400x240 10 \
+Xdialog --rc-file ./gnocode/.color.rc --title "$(gettext 'GNOSTMENU  0.1')" --screen-center --icon "$ICON" --icon-name="$ICONAPP" --left --menubox "$(gettext 'Clone/restore NTFS, EXT, FAT partitions')" 400x240 10 \
  '1' "$(gettext 'Backup/restore an NTFS partition')" \
  '2' "$(gettext 'Copy an NTFS partition')" \
  '3' "$(gettext 'Backup/restore an EXT partition')" \
